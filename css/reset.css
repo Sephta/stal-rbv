@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 /* Box sizing rules */
 *,
 *::before,
@@ -35,6 +37,9 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  font-family: 'Roboto Mono', monospace;
+  background-color: #000;
+  color: #fff;
 }
 
 /* A elements that don't have a class get default styles */

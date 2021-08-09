@@ -4,6 +4,7 @@
  * Fetching Data from r/Business using public reddit api
  */
 
+
 const subreddit = `business`;
 const listing   = `new`;
 const limit     = `4`;
