@@ -53,7 +53,7 @@ const generateListingCards = (data) => {
   data.forEach((child) => {
     let childContainer = document.createElement('a');
     childContainer.id = "child-card-" + acc;
-    childContainer.href = `${child.data.url}`;
+    childContainer.href = `https://www.reddit.com${child.data.permalink}`;
     childContainer.dataset.json = JSON.stringify(child.data);
     childContainer.classList.add(`card`);
     childContainer.classList.add(`flex-container`);
