@@ -1,7 +1,7 @@
 // import * as PS from "./pageState.js";
-import {pageState, updatePageState, nextPageState, prevPageState, viewPageState} from "./pageState.js";
+import {nextPageState, prevPageState} from "./pageState.js";
 
-pageState && console.log("Import test: ", pageState);
+// pageState && console.log("Import test: ", pageState);
 
 let prevButton = document.querySelector(`#prev-button`);
 let nextButton = document.querySelector(`#next-button`);

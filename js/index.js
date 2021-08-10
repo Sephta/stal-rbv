@@ -18,24 +18,23 @@ const timeframe = `month`;
 
 export const dataEndpoint = `https://www.reddit.com/r/${subreddit}/${listing}.json?limit=${limit}&t=${timeframe}`;
 
-export const fetchRedditData = async (endpoint) => {
+export const fetchRedditData = async (endpoint, debug) => {
   await fetch(endpoint)
   .then((response) => response.json())
   .then((responseObject) => {
-    // console.log("Data: ", responseObject);
+
+    debug && console.log("Endpoint: ", endpoint);
+    debug && console.log("Data fetched from endpoint: ", responseObject);
 
     let data = responseObject.data;
 
-    // data?.children.forEach((child) => {
-    //   console.log(child);
-    // });
+    debug && data?.children.forEach((child) => {
+      console.log(child);
+    });
 
     let parentContainer = generateListingCards(data.children);
 
-    console.log("Parent: ", parentContainer);
-
-    return new Promise((props) => console.log("Promise: ", data),
-      (err) => console.log("ERR: ", err));
+    debug && console.log("Parent Container as HTMLELement: ", parentContainer);
   })
   .catch((error) => {
     error && console.log("ERROR: ", error);
@@ -51,13 +50,7 @@ const generateListingCards = (data) => {
   let acc = pageState.startIndex;
 
   data.forEach((child) => {
-    let childContainer = document.createElement('a');
-    childContainer.id = "child-card-" + acc;
-    childContainer.href = `https://www.reddit.com${child.data.permalink}`;
-    childContainer.dataset.json = JSON.stringify(child.data);
-    childContainer.classList.add(`card`);
-    childContainer.classList.add(`flex-container`);
-    childContainer.classList.add(`flex-column`);
+    let childContainer = generateChildContainer(child.data, acc); 
 
     let cardHeader = createCardHeader(child.data.title);
     
@@ -77,6 +70,19 @@ const generateListingCards = (data) => {
   });
 
   return parentContainer;
+};
+
+const generateChildContainer = (data, idSuffix) => {
+  let childContainer = document.createElement('a');
+
+  childContainer.id = "child-card-" + idSuffix;
+  childContainer.href = `https://www.reddit.com${data.permalink}`;
+  childContainer.dataset.json = JSON.stringify(data);
+  childContainer.classList.add(`card`);
+  childContainer.classList.add(`flex-container`);
+  childContainer.classList.add(`flex-column`);
+
+  return childContainer;
 };
 
 const createCardHeader = (text) => {
@@ -111,6 +117,5 @@ const appendElementContent = (element, contentList) => {
   contentList.forEach((content) => element.appendChild(content));
 };
 
-let testValue = fetchRedditData(dataEndpoint)
-  .then((message) => console.log("Test: ", testValue, " , Message: ", message));
+let response = fetchRedditData(dataEndpoint);
 
