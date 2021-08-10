@@ -15,7 +15,19 @@ export const viewPageState = () => console.log("Page State: ", pageState);
 export const nextPageState = (event) => {
 
   // console.log(`child-card-${pageState.endIndex}`);
-  let cardData = JSON.parse(document.getElementById(`child-card-${pageState.endIndex}`).dataset.json);
+  let cardData = null;
+
+  let acc = pageState.endIndex;
+  while (cardData == null)
+  {
+    // console.log(acc);
+    cardData = document.getElementById(`child-card-${acc}`);
+    acc -= 1;
+  }
+
+  // console.log(cardData);
+
+  cardData = JSON.parse(cardData.dataset.json);
 
   // console.log("Name: ", cardData.name);
 
