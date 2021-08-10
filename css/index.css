@@ -29,10 +29,15 @@ body > * {
   justify-content: center;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .dark-gradient {
   background: linear-gradient(90deg, var(--dark) 0%, var(--black) 100%);
 }
 
+/* #region BUTTON STYLES ---------------------------------------------- */
 .button {
   width: 7em;
   height: 3em;
@@ -42,7 +47,6 @@ body > * {
   line-height: 1em;
 }
 
-/* #region BUTTON STYLES ---------------------------------------------- */
 .button-primary {
   background-color: var(--bright-accent);
   border: none;
@@ -76,6 +80,75 @@ body > * {
 }
 /* #endregion --------------------------------------------------------- */
 
+/* #region CARD STYLES ------------------------------------------------ */
+.card {
+  min-width: 18em;
+
+  margin: 2.5em 0;
+  padding: 1em;
+
+  border: 1px solid var(--medium);
+  border-radius: 4px;
+
+  color: initial;
+
+  text-decoration: none;
+
+  transition: 100ms ease-out;
+}
+
+.card:hover {
+  border: 1px solid var(--bright-accent);
+  background-color: var(--medium);
+  color: var(--bright-accent);
+}
+
+.card:hover #card-author, .card:hover #card-comment-count, .card:hover h2 {
+  color: var(--bright-accent);
+}
+
+.card:hover #dashed-line {
+  border: 1px dashed var(--bright-accent);
+}
+
+.card > h2 {
+  font-weight: 400;
+  font-size: 24px;
+
+  color: var(--white);
+
+  transition: 100ms ease-out;
+}
+
+.card-footer {
+  width: 100%;
+}
+
+#dashed-line {
+  width: 100%;
+  height: 1px;
+
+  margin: 1em 0;
+
+  border: 1px dashed var(--medium);
+}
+
+#card-author {
+  margin-left: auto;
+  color: var(--medium);
+
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#card-comment-count {
+  color: var(--bright-accent);
+
+  font-size: 14px;
+  font-weight: 400;
+}
+/* #endregion --------------------------------------------------------- */
+
 header, main, #button-container {
   width: 100%;
   padding: 0.5em;
@@ -85,3 +158,37 @@ header, main, #button-container {
 #next-button {
   margin-left: auto;
 }
+
+/* #region MEDIA QUERIES ---------------------------------------------- */
+@media screen and (max-width: 1600px) {
+  .card {
+    max-width: 48.125em;
+    min-height: 11em;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .card {
+    max-width: 37em;
+    min-height: 8em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card > h2 {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #card-author {
+    font-size: 12px;
+  }
+
+  #card-comment-count {
+    font-size: 12px;
+  }
+}
+
+/* @media screen and (max-width: 320px) {} */
+/* #endregion --------------------------------------------------------- */
