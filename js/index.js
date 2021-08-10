@@ -5,14 +5,20 @@
  */
 
 
+import { pageState } from "./pageState.js";
+
+let prevButton = document.getElementById(`prev-button`);
+
+prevButton.disabled = pageState.endIndex <= 3 ? true : false;
+
 const subreddit = `business`;
 const listing   = `new`;
 const limit     = `4`;
 const timeframe = `month`;
 
-const dataEndpoint = `https://www.reddit.com/r/${subreddit}/${listing}.json?limit=${limit}&t=${timeframe}`;
+export const dataEndpoint = `https://www.reddit.com/r/${subreddit}/${listing}.json?limit=${limit}&t=${timeframe}`;
 
-const fetchRedditData = async (endpoint) => {
+export const fetchRedditData = async (endpoint) => {
   await fetch(endpoint)
   .then((response) => response.json())
   .then((responseObject) => {
@@ -42,12 +48,13 @@ const generateListingCards = (data) => {
   let parentContainer = document.getElementById("card-container");
 
   // an accumulator that gets applied to each child's id
-  let acc = 0;
+  let acc = pageState.startIndex;
 
   data.forEach((child) => {
     let childContainer = document.createElement('a');
     childContainer.id = "child-card-" + acc;
     childContainer.href = `${child.data.url}`;
+    childContainer.dataset.json = JSON.stringify(child.data);
     childContainer.classList.add(`card`);
     childContainer.classList.add(`flex-container`);
     childContainer.classList.add(`flex-column`);

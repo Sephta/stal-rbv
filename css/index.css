@@ -82,6 +82,7 @@ body > * {
 
 /* #region CARD STYLES ------------------------------------------------ */
 .card {
+  max-width: 48.125em;
   min-width: 18em;
 
   margin: 2.5em 0;
