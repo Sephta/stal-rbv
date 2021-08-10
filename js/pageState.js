@@ -14,10 +14,10 @@ export const viewPageState = () => console.log("Page State: ", pageState);
 
 export const nextPageState = (event) => {
 
-  console.log(`child-card-${pageState.endIndex}`);
+  // console.log(`child-card-${pageState.endIndex}`);
   let cardData = JSON.parse(document.getElementById(`child-card-${pageState.endIndex}`).dataset.json);
 
-  console.log("Name: ", cardData.name);
+  // console.log("Name: ", cardData.name);
 
   let cardContainer = document.getElementById(`card-container`);
 
@@ -36,15 +36,15 @@ export const nextPageState = (event) => {
 
   prevButton.disabled = pageState.endIndex <= 3 ? true : false;
 
-  viewPageState();
+  // viewPageState();
 };
 
 export const prevPageState = (event) => {
 
-  console.log(`child-card-${pageState.endIndex}`);
+  // console.log(`child-card-${pageState.endIndex}`);
   let cardData = JSON.parse(document.getElementById(`child-card-${pageState.startIndex}`).dataset.json);
 
-  console.log("Name: ", cardData.name);
+  // console.log("Name: ", cardData.name);
 
   let cardContainer = document.getElementById(`card-container`);
 
@@ -63,5 +63,5 @@ export const prevPageState = (event) => {
 
   prevButton.disabled = pageState.endIndex <= 3 ? true : false;
 
-  viewPageState();
+  // viewPageState();
 };
